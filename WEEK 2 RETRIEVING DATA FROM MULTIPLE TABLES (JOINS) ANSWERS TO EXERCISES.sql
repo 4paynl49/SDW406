@@ -2,12 +2,11 @@
 --WEEK 2 RETRIEVING DATA FROM MULTIPLE TABLES (JOINS) ANSWERS TO EXERCISES  
 
 --1
-SELECT customer.name, customer.creditlimit, ord.ordid, ord.orderdate 
-FROM customer   
-    INNER JOIN ord ON customer.custid = ord.custid 
-WHERE ord.orderdate > '2005-01-01' 
-ORDER BY  customer.name, ord.orderdate; 
-
+SELECT customer.name, customer.creditlimit, ord.ordid, ord.orderdate
+FROM customer
+    INNER JOIN ord ON customer.custid = ord.custid
+WHERE ord.orderdate > '2005-01-01'
+ORDER BY customer.name , ord.orderdate;
 --2
 SELECT  emp.ename AS 'Rep', customer.name, customer.area, customer.creditlimit
 FROM emp
