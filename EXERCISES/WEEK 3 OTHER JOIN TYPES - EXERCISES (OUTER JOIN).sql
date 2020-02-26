@@ -37,6 +37,7 @@ FROM emp e
     INNER JOIN emp m ON e.mgr = m.empno
 WHERE e.deptno = 10
 OR e.deptno = 20
+-- e.deptno IN (10, 20)
 ORDER BY e.deptno, e.mgr;
 
 --6 
