@@ -65,7 +65,7 @@ GROUP BY c.name
 HAVING COUNT(i.itemid) >= 5;
 
 --10
-SELECT e.ename, d.dname, COUNT(i.itemid) AS 'No of items ordered', printf("£%.2f",SUM(i.qty*i.actualprice)) AS 'Order Value'
+SELECT e.ename, d.dname, COUNT(o.ordid) AS 'No of items ordered', printf("£%.2f",SUM(i.qty*i.actualprice)) AS 'Order Value'
 FROM dept d
     INNER JOIN emp e ON d.deptno = e.deptno
     INNER JOIN customer c ON e.empno = c.repid
@@ -77,3 +77,12 @@ HAVING COUNT(o.ordid) >= 3
 AND SUM(i.qty * i.actualprice) >= 1000;
 
 --11
+SELECT e.ename, hiredate, p.descrip, COUNT(o.ordid) AS 'No of Orders', PRINTF("£%.2f", SUM(i.qty * i.actualprice)) AS 'Order Value' 
+FROM emp e 
+    INNER JOIN customer c ON e.empno = c.repid
+    INNER JOIN ord o ON c.custid  = o.custid 
+    INNER JOIN item i ON o.ordid  = i.ordid 
+    INNER JOIN product p ON p.prodid = i.prodid 
+GROUP BY e.ename, hiredate, p.descrip 
+HAVING COUNT(o.ordid) >= 3 
+ORDER BY e.ename, p.prodid
