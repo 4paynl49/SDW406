@@ -150,4 +150,8 @@
     -- DELETE FROM units 
     -- WHERE unit_name = 'Hardware 2'; 
 
+--5 NOT NULL constraint 
+    -- INSERT INTO courses (course_code, course_level) 
+    -- VALUES ('B84','BSc'); 
 
+SELECT round(8.6)
