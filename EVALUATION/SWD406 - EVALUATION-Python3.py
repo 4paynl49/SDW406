@@ -56,14 +56,7 @@ def main_menu():
 def display_order_history():
 	print("Order History\n")
 
-	curs.execute("""SELECT so.order_id, so.order_date, so.order_status, s.seller_name, op.quantity, op.price, p.product_description
-FROM shopper_orders so
-INNER JOIN ordered_products op ON so.order_id = op.order_id
-INNER JOIN product_sellers ps ON op.product_id = ps.product_id AND op.seller_id = ps.seller_id
-INNER JOIN products p ON ps.product_id = p.product_id
-INNER JOIN sellers s ON ps.seller_id = s.seller_id
-WHERE so.shopper_id={0}
-ORDER BY so.order_date DESC, so.order_id""".format(shopper_id))
+	curs.execute("""""".format(shopper_id))
 
 	all_rows = curs.fetchall()
 	if len(all_rows) == 0:
@@ -102,7 +95,7 @@ ORDER BY p.product_description""".format(category_id))
 	product_id = _display_options(all_rows, "Products", "product")
 
 	# Get the seller
-	curs.execute("""SELECT s.seller_id, s.seller_name
+	curs.execute("""SELECT s.seller_id, s.seller_name|| printf(' (£%.2f)', ps.price)
 FROM sellers s, product_sellers ps
 WHERE ps.seller_id = s.seller_id AND ps.product_id='{0}'
 ORDER BY s.seller_name""".format(product_id))
